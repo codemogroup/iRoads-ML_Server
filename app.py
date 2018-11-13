@@ -1,20 +1,19 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def hello():
-    return "Hello World!"
+    return "iRoads trained model accessing API"
 
-@app.route("/name/<name>")
-def get_book_name(name):
-    return "name : {}".format(name)
 
-@app.route("/details")
-def get_book_details():
-    author=request.args.get('author')
-    published=request.args.get('published')
-    return "Author : {}, Published: {}".format(author,published)
+@app.route('/getIri', methods=['POST']) 
+def get_iri():
+    content = request.json
+    # todo work here
+    return jsonify(content)
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=9006)
