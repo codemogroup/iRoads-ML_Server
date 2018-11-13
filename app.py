@@ -1,6 +1,5 @@
-#!/usr/bin/python
-from flask import Flask, request, jsonify
-
+from flask import Flask, request
+import predictor
 app = Flask(__name__)
 
 
@@ -12,8 +11,7 @@ def hello():
 @app.route('/getIri', methods=['POST']) 
 def get_iri():
     content = request.json
-    # todo work here
-    return jsonify(content)
+    return predictor.predict(content)
 
 
 if __name__ == '__main__':
