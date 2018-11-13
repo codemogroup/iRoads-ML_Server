@@ -1,4 +1,5 @@
-env/*
+modelserver/modelserverenv/*
 .vscode/
 __pycache__/
-.idea/
+.idea/http://localhost
+.idea
