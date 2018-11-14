@@ -1,5 +1,5 @@
 from flask import Flask, request
-from modelserver import predictor
+
 
 app = Flask(__name__)
 
@@ -12,6 +12,8 @@ def hello():
 @app.route('/getIri', methods=['POST'])
 def get_iri():
     content = request.json
+
+    from modelserver import predictor
     return predictor.predict(content)
 
 
