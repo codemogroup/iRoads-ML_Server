@@ -1,4 +1,7 @@
 from flask import Flask, request
+from sklearn.externals import joblib
+import json
+import pandas as pd
 
 
 app = Flask(__name__)
@@ -13,8 +16,15 @@ def hello():
 def get_iri():
     content = request.json
 
-    from modelserver import predictor
-    return predictor.predict(content)
+    df = pd.DataFrame(content["array"])
+    print(df)
+    joblib_file = "./models/joblib_model-" + content["segment"] + ".pkl"
+
+    model = joblib.load(joblib_file)
+    val_predictions = model.predict(df)
+    print(val_predictions)
+
+    return json.dumps(val_predictions.tolist())
 
 
 if __name__ == '__main__':
