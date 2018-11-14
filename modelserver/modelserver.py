@@ -1,5 +1,5 @@
 from flask import Flask, request
-import predictor
+from modelserver import predictor
 
 app = Flask(__name__)
 
